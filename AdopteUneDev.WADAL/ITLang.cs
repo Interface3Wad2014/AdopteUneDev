@@ -56,7 +56,7 @@ namespace AdopteUneDev.WADAL
         {
             string query = @"select * from Categories c
                             inner join LangCateg l 
-                            on c.idCategory = i.idCategory
+                            on c.idCategory = l.idCategory
                             where l.idIT =" + this.IdIT;
             List<WADAL.Categories> retour = new List<WADAL.Categories>();
             List<Dictionary<string, object>> MesCat = GestionConnexion.Instance.getData(query);
