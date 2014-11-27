@@ -40,7 +40,7 @@ namespace AdopteUneDev.WADAL
         #region Fields
         private SqlConnection _oConn;
         private SqlCommand _oCom;
-        private string _cnstr = DAL.Properties.Settings.Default.ConnectionString;
+        private string _cnstr = @"Server=MIKE-PC\TFTIC;Database=AdopteUneDev;User Id=AdopteUser;Password=AdopteUser;";
         #endregion
 
        
