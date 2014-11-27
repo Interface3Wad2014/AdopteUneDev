@@ -1,0 +1,54 @@
+﻿/*Added by Mike*/
+.header-middle 
+{
+    
+   background-color:rgb(23,36,49) ;
+   border:none;
+}
+.header-middle .container
+{
+       height:117px;
+       background-image: url("../images/logoAdopte.png"),url("../images/fdlogo2.png");
+    background-position: left top, left top;
+background-repeat: no-repeat,repeat-x;
+}
+.header-middle .container .row
+{
+    border-bottom:none
+}
+
+
+.shop-menu ul li a
+{
+    
+    background-color:transparent;
+    color:#fff;
+   padding-right:5px;
+   padding-Left:5px;
+}
+
+.shop-menu ul li a:hover
+{
+     background-color:#fff;
+    color:rgb(23,36,49) ;
+   border:none;
+   padding:5px;
+   padding:5px;
+   padding:5px;
+}
+
+.shop-menu ul li
+{
+    margin-top:20px;
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.devisePays
+{
+    float:right;
+    margin-top:-10px;
+    width:200px;
+}
+/**********/
