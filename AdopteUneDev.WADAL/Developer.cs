@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AdopteUneDev.WADAL
 {
     /// <summary>
-    /// Classe représentant un DEV
+    /// Classe représentant un developeur
     /// </summary>
      public class Developer
     {
