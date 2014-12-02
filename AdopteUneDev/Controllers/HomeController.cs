@@ -1,4 +1,5 @@
 ﻿
+using AdopteUneDev.WADAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ namespace AdopteUneDev.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            
-          
-            return View();
+            List<Categories> lesCategories = Categories.ChargerToutesLesCategories();
+
+            return View(lesCategories);
         }
 	}
 }
