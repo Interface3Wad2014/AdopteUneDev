@@ -1,6 +1,7 @@
 ﻿using AdopteUneDev.WADAL;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,16 +10,30 @@ namespace AdopteUneDev.Helper
 {
     public static class CustHelper
     {
+        /// <summary>
+        /// Html helper permettant de créer un tag H1
+        /// </summary>
+        /// <param name="Origin">la classe helper étendue</param>
+        /// <param name="texte">le texte a mettre en H1</param>
+        /// <param name="laclasse">la classe du H1 a attribuer</param>
+        /// <returns></returns>
         public static MvcHtmlString BoldTitle(this HtmlHelper Origin, string texte, string laclasse)
         {
             TagBuilder ta = new TagBuilder("h1");
-            ta.InnerHtml = texte.ToUpper();
+            ta.InnerHtml = "<b>"+texte.ToUpper()+"</b>";
             ta.AddCssClass(laclasse);
 
             return new MvcHtmlString(ta.ToString());
         }
 
+        /// <summary>
+        /// Permet d'afficher les catégories de language en respectant les contraintes du template
+        /// </summary>
+        /// <param name="origin">la classe helper étendue</param>
+        /// <param name="categs">La liste des catégories</param>
+        /// <returns></returns>
         public static MvcHtmlString MenuCategAndLang(this HtmlHelper origin, IEnumerable<Categories> categs)
+
         {
             /*Html a générer
              * <div class="panel-group category-products" id="accordian">
@@ -67,7 +82,7 @@ namespace AdopteUneDev.Helper
                             TagBuilder atoggle = new TagBuilder("a");
                             atoggle.Attributes.Add("data-parent", "#accordian");
                             atoggle.Attributes.Add("data-toggle", "collapse");
-                            atoggle.Attributes.Add("href", "#" + CurrentCateg.CategLabel);
+                            atoggle.Attributes.Add("href", "#" + CurrentCateg.CategLabel.Replace(" ","") );
                                 //<span class="badge pull-right"><i class="fa fa-plus"></i></span>
                                     TagBuilder spanbadge = new TagBuilder("span");
                                     spanbadge.AddCssClass("pull-right");
@@ -84,7 +99,7 @@ namespace AdopteUneDev.Helper
                 //Ajout des langs
                  // <div id="sportswear" class="panel-collapse collapse">
                  TagBuilder tagLang = new TagBuilder("div");
-                 tagLang.Attributes.Add("id", CurrentCateg.CategLabel);
+                 tagLang.Attributes.Add("id", CurrentCateg.CategLabel.Replace(" ", ""));
                  tagLang.AddCssClass("collapse");
                  tagLang.AddCssClass("panel-collapse");
                      //<div class="panel-body">
@@ -111,6 +126,72 @@ namespace AdopteUneDev.Helper
 
             return new MvcHtmlString(principal.ToString());
         }
-        
+       
+        /// <summary>
+        /// Permet de mettre en place le menu des languages + le nombre de dev dispo
+        /// </summary>
+        /// <param name="origin">la classe helper étendue</param>
+        /// <param name="langs">La liste des languages IT</param>
+        /// <returns></returns>
+        public static MvcHtmlString MenuDevAndLang(this HtmlHelper origin, IEnumerable<ITLang> langs)
+        {
+          /*  <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#"> <span class="pull-right">(50)</span>.NET</a></li>
+                                <li><a href="#"> <span class="pull-right">(56)</span>PHP</a></li>
+                                <li><a href="#"> <span class="pull-right">(27)</span>JAVA</a></li>
+                                <li><a href="#"> <span class="pull-right">(32)</span>ANDROID</a></li>
+                                <li><a href="#"> <span class="pull-right">(5)</span>JQuery</a></li>
+                            </ul>*/
+            TagBuilder ta = new TagBuilder("ul");
+            ta.AddCssClass("nav-stacked");
+            ta.AddCssClass("nav-pills");
+            ta.AddCssClass("nav");
+            foreach (ITLang item in langs)
+            {
+                TagBuilder tli = new TagBuilder("li");
+                TagBuilder ah = new TagBuilder("a");
+                    TagBuilder tspan = new TagBuilder("span");
+                    tspan.AddCssClass("pull-right");
+                    tspan.InnerHtml = "(" + item.Developers.Count().ToString() + ")";
+                    ah.InnerHtml = tspan.ToString();
+                    ah.InnerHtml += item.ITLabel.Replace(" ", "");
+                    tli.InnerHtml = ah.ToString();
+                ta.InnerHtml += tli.ToString();
+            }
+            return new MvcHtmlString(ta.ToString());
+
+        }
+
+
+        #region NOT READ
+        //public static MvcHtmlString DeveloperOfTheMonth(this HtmlHelper origin, IEnumerable<Developer> devs)
+        //{
+        //    string returnStr = "";
+        //    foreach (Developer CurrentDev in devs)
+        //    {
+
+        //        returnStr += RenderViewToString((ControllerContext)HttpContext.Current.Session["ControllerContext"], "_DevDisplay", CurrentDev);
+        //    }
+        //    return new MvcHtmlString(returnStr);
+        //}
+
+
+        //public static string RenderViewToString(ControllerContext context, string viewName, object model)
+        //{
+        //    if (string.IsNullOrEmpty(viewName))
+        //        viewName = context.RouteData.GetRequiredString("action");
+
+        //    var viewData = new ViewDataDictionary(model);
+
+        //    using (var sw = new StringWriter())
+        //    {
+        //        var viewResult = ViewEngines.Engines.FindPartialView(context, viewName);
+        //        var viewContext = new ViewContext(context, viewResult.View, viewData, new TempDataDictionary(), sw);
+        //        viewResult.View.Render(viewContext, sw);
+
+        //        return sw.GetStringBuilder().ToString();
+        //    }
+        //} 
+        #endregion
     }
 }

@@ -18,9 +18,13 @@ namespace AdopteUneDev.WADAL
         /// </summary>
         private string _iTLabel;
           /// <summary>
-          /// Liste des catégories associée à l'ITLang courante
+          /// Liste des catégories associées à l'ITLang courante
           /// </summary>
         private List<Categories> _categories; 
+         /// <summary>
+          /// Liste des Developpeurs associées à l'ITLang courante
+          /// </summary>
+        private List<Developer> _developers;
         #endregion
         #region Properties
         /// <summary>
@@ -30,6 +34,16 @@ namespace AdopteUneDev.WADAL
         {
             get { return _categories = _categories ?? ChargerLesCategories(); }
         }
+        /// <summary>
+        /// NAvigation properties permettant de récupérer les developpeurs de l'ITLang courante
+        /// </summary>
+        public List<Developer> Developers
+        {
+            get { return _developers = _developers ?? ChargerLesDevs(); }
+
+        }
+
+       
         /// <summary>
         /// Propriété permettant de récupérer le nom du language
         /// </summary>
@@ -52,7 +66,7 @@ namespace AdopteUneDev.WADAL
         /// Permet de charger la liste des catégories associées à l'ITLang courante
         /// </summary>
         /// <returns>la liste des catégories associées à l'ITLang courante</returns>
-        private List<WADAL.Categories> ChargerLesCategories()
+        private List<Categories> ChargerLesCategories()
         {
             string query = @"select * from Categories c
                             inner join LangCateg l 
@@ -70,6 +84,36 @@ namespace AdopteUneDev.WADAL
 
             return retour;
 
+        }
+
+        private List<Developer> ChargerLesDevs()
+        {
+            string query = @"select d.* from Developer d
+                            inner join DevLang l 
+                            on d.idDev = l.idDev
+                            where l.idIT =" + this.IdIT;
+            List<Developer> retour = new List<Developer>();
+            List<Dictionary<string, object>> MesDev = GestionConnexion.Instance.getData(query);
+            foreach (Dictionary<string, object> item in MesDev)
+            {
+                Developer dev = new Developer()
+                {
+                    IdDev = (int)item["idDev"],
+                    DevBirthDate = (DateTime)item["DevBirthDate"],
+                    DevDayCost = (double)item["DevDayCost"],
+                    DevFirstName = item["DevFirstName"].ToString(),
+                    DevHourCost = (double)item["DevHourCost"],
+                    DevMail = item["DevMail"].ToString(),
+                    DevMonthCost = (double)item["DevMonthCost"],
+                    DevName = item["DevName"].ToString(),
+                    DevPicture = item["DevPicture"].ToString()
+                };
+                
+
+                retour.Add(dev);
+            }
+
+            return retour;
         }
         #region Static
         /// <summary>

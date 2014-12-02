@@ -1,4 +1,5 @@
 ﻿
+using AdopteUneDev.Models;
 using AdopteUneDev.WADAL;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,15 @@ namespace AdopteUneDev.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            List<Categories> lesCategories = Categories.ChargerToutesLesCategories();
+            Session["ControllerContext"] = this.ControllerContext;
+            HomeModel HM = new HomeModel()
+            {
+                lstCateg = Categories.ChargerToutesLesCategories(),
+                lstLangs = ITLang.ChargerToutesLesITLang(),
+                lstDev = Developer.ChargerTousLesDev()
+            };
 
-            return View(lesCategories);
+            return View(HM);
         }
 	}
 }
