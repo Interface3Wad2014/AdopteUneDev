@@ -44,7 +44,15 @@ namespace AdopteUneDev.WADAL
          /// <summary>
          /// Mail du développeur
          /// </summary>
-        private string _devMail; 
+        private string _devMail;
+         /// <summary>
+         /// Identifiant de la catégorie liée
+         /// </summary>
+        private int? _devCategPrincipale;        
+         /// <summary>
+         /// Nom de la catégorie principale de notre developpeur
+         /// </summary>
+        private string _NomCategPrincipale;       
         #endregion
         #region Properties
          /// <summary>
@@ -83,58 +91,90 @@ namespace AdopteUneDev.WADAL
          /// propriété permettant de récupérer le mail du developpeur
          /// </summary>
          public string DevMail { get { return _devMail; } set { _devMail = value; } }
+         /// <summary>
+         /// propriété pour récupérer l'id de la catégorie
+         /// </summary>
+         public int? DevCategPrincipale
+         {
+             get { return _devCategPrincipale; }
+             set { _devCategPrincipale = value; }
+         }
+         /// <summary>
+         /// propriété permettant la récupération du nom de la catégorie principale de notre développeur
+         /// </summary>
+         public string NomCategPrincipale
+         {
+             get { return _NomCategPrincipale = _NomCategPrincipale?? chargerNomCateg(); }
+         }        
         #endregion
          #region Functions
          /// <summary>
-         /// Peremet de récupérer la totalité des développeurs
+         /// Permet de charger le nom de la catégorie principale de notre développeur
          /// </summary>
-         /// <returns>Une liste de Developer</returns>
-         public static List<Developer> ChargerTousLesDev()
+         /// <returns>Aucune idée mais probablement le nom de la catégorie,non???</returns>
+         private string chargerNomCateg()
          {
-             List<Dictionary<string, object>> lstDevs =
-                 GestionConnexion.Instance.getData("select * from Developer");
-             List<Developer> retour = new List<Developer>();
-             foreach (Dictionary<string, object> item in lstDevs)
+             List<Dictionary<string, object>> maCateg 
+                 = GestionConnexion.Instance.getData("Select CategLabel from Categories where idCategory="+ this.DevCategPrincipale);
+             string categName = "";
+             //premier élément de la liste  ==> Champ CategLabel
+             if (maCateg[0]["CategLabel"] != null) categName = maCateg[0]["CategLabel"].ToString();
+
+             return categName;
+         
+         }
+             #region Static
+             /// <summary>
+             /// Peremet de récupérer la totalité des développeurs
+             /// </summary>
+             /// <returns>Une liste de Developer</returns>
+             public static List<Developer> ChargerTousLesDev()
              {
-                 Developer dev = Associe(item);
-                 retour.Add(dev);
+                 List<Dictionary<string, object>> lstDevs =
+                     GestionConnexion.Instance.getData("select * from Developer");
+                 List<Developer> retour = new List<Developer>();
+                 foreach (Dictionary<string, object> item in lstDevs)
+                 {
+                     Developer dev = Associe(item);
+                     retour.Add(dev);
+                 }
+                 return retour;
              }
-             return retour;
-         }
-         /// <summary>
-         /// Permet de récupérer 1 developpeur à partir de son ID
-         /// </summary>
-         /// <param name="idD">Id du developpeur a charger</param>
-         /// <returns>Le developpeur</returns>
-         public static Developer ChargerUnDev(int idD)
-         {
-             List<Dictionary<string, object>> UnDev =
-             GestionConnexion.Instance.getData("select * from Developer where idDev=" + idD);
-             Developer dev = Associe(UnDev[0]);
-             return dev;
-         }
-         /// <summary>
-         /// Permet d'associer les champs du dictionnaire aux propriétés correspondantes
-         /// </summary>
-         /// <param name="item">Un dictionnaire (nom col, valeur)</param>
-         /// <returns></returns>
-         private static Developer Associe(Dictionary<string, object> item)
-         {
-             Developer dev = new Developer()
-                {
-                    IdDev = (int)item["idDev"],
-                    DevName = item["DevName"].ToString(),
-                    DevFirstName = item["DevFirstName"].ToString(),
-                    DevBirthDate = DateTime.Parse(item["DevBirthDate"].ToString()),
-                    DevDayCost = (double)item["DevDayCost"],
-                    DevMail = item["DevMail"].ToString(),
-                    DevHourCost = (double)item["DevHourCost"],
-                    DevMonthCost = (double)item["DevMonthCost"],
-                    DevPicture = item["DevPicture"] == null ? "" : item["DevPicture"].ToString()
-                };
-             return dev;
-         }
-        
+             /// <summary>
+             /// Permet de récupérer 1 developpeur à partir de son ID
+             /// </summary>
+             /// <param name="idD">Id du developpeur a charger</param>
+             /// <returns>Le developpeur</returns>
+             public static Developer ChargerUnDev(int idD)
+             {
+                 List<Dictionary<string, object>> UnDev =
+                 GestionConnexion.Instance.getData("select * from Developer where idDev=" + idD);
+                 Developer dev = Associe(UnDev[0]);
+                 return dev;
+             }
+             /// <summary>
+             /// Permet d'associer les champs du dictionnaire aux propriétés correspondantes
+             /// </summary>
+             /// <param name="item">Un dictionnaire (nom col, valeur)</param>
+             /// <returns></returns>
+             private static Developer Associe(Dictionary<string, object> item)
+             {
+                 Developer dev = new Developer()
+                    {
+                        IdDev = (int)item["idDev"],
+                        DevName = item["DevName"].ToString(),
+                        DevFirstName = item["DevFirstName"].ToString(),
+                        DevBirthDate = DateTime.Parse(item["DevBirthDate"].ToString()),
+                        DevDayCost = (double)item["DevDayCost"],
+                        DevMail = item["DevMail"].ToString(),
+                        DevHourCost = (double)item["DevHourCost"],
+                        DevMonthCost = (double)item["DevMonthCost"],
+                        DevPicture = item["DevPicture"] == null ? "" : item["DevPicture"].ToString(),
+                        DevCategPrincipale = (int)item["DevCategPrincipal"]
+                    };
+                 return dev;
+             }
+             #endregion
          #endregion
      }
 }
