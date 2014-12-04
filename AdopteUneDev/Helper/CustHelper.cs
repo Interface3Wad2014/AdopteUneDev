@@ -164,34 +164,47 @@ namespace AdopteUneDev.Helper
 
 
         #region NOT READ
-        //public static MvcHtmlString DeveloperOfTheMonth(this HtmlHelper origin, IEnumerable<Developer> devs)
-        //{
-        //    string returnStr = "";
-        //    foreach (Developer CurrentDev in devs)
-        //    {
+        public static MvcHtmlString DeveloperOfTheMonth(this HtmlHelper origin, IEnumerable<Developer> devs)
+        {
+            string returnStr = "";
+            foreach (Developer CurrentDev in devs)
+            {
 
-        //        returnStr += RenderViewToString((ControllerContext)HttpContext.Current.Session["ControllerContext"], "_DevDisplay", CurrentDev);
-        //    }
-        //    return new MvcHtmlString(returnStr);
-        //}
+                returnStr += RenderPartialViewToString((Controller)HttpContext.Current.Session["CurrentController"], "_DevDisplay", CurrentDev);
+            }
+            return new MvcHtmlString(returnStr);
+        }
+        /// <summary>
+        /// Renders the specified partial view to a string.
+        /// </summary>
+        /// <param name="controller">The current controller instance.</param>
+        /// <param name="viewName">The name of the partial view.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>The partial view as a string.</returns>
+        public static string RenderPartialViewToString(Controller controller, string viewName, object model)
+        {
+            //Sert à afficher la photo, le nom de la categ,.... dans la vue
+            if (string.IsNullOrEmpty(viewName))
+            {
+                viewName = controller.ControllerContext.RouteData.GetRequiredString("action");
+            }
 
+            controller.ViewData.Model = model;
 
-        //public static string RenderViewToString(ControllerContext context, string viewName, object model)
-        //{
-        //    if (string.IsNullOrEmpty(viewName))
-        //        viewName = context.RouteData.GetRequiredString("action");
+            using (var sw = new StringWriter())
+            {
+                // Find the partial view by its name and the current controller context.
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(controller.ControllerContext, viewName);
 
-        //    var viewData = new ViewDataDictionary(model);
+                // Create a view context.
+                var viewContext = new ViewContext(controller.ControllerContext, viewResult.View, controller.ViewData, controller.TempData, sw);
 
-        //    using (var sw = new StringWriter())
-        //    {
-        //        var viewResult = ViewEngines.Engines.FindPartialView(context, viewName);
-        //        var viewContext = new ViewContext(context, viewResult.View, viewData, new TempDataDictionary(), sw);
-        //        viewResult.View.Render(viewContext, sw);
+                // Render the view using the StringWriter object.
+                viewResult.View.Render(viewContext, sw);
 
-        //        return sw.GetStringBuilder().ToString();
-        //    }
-        //} 
+                return sw.GetStringBuilder().ToString();
+            }
+        }
         #endregion
     }
 }

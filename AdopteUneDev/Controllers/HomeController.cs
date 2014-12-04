@@ -15,7 +15,7 @@ namespace AdopteUneDev.Controllers
         // GET: /Home/
         public ActionResult Index()
         {
-            Session["ControllerContext"] = this.ControllerContext;
+            Session["CurrentController"] = this;
             HomeModel HM = new HomeModel()
             {
                 lstCateg = Categories.ChargerToutesLesCategories(),
