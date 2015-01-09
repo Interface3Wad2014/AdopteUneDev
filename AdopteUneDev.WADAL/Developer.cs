@@ -52,7 +52,11 @@ namespace AdopteUneDev.WADAL
          /// <summary>
          /// Nom de la catégorie principale de notre developpeur
          /// </summary>
-        private string _NomCategPrincipale;       
+        private string _NomCategPrincipale;
+
+        private List<Review> _Lstreview = null;
+
+        
         #endregion
         #region Properties
          /// <summary>
@@ -105,7 +109,13 @@ namespace AdopteUneDev.WADAL
          public string NomCategPrincipale
          {
              get { return _NomCategPrincipale = _NomCategPrincipale?? chargerNomCateg(); }
-         }        
+         }
+
+         public List<Review> Lstreview
+         {
+             get { return _Lstreview=_Lstreview?? ChargerReviews(); }
+             set { _Lstreview = value; }
+         }         
         #endregion
          #region Functions
          /// <summary>
@@ -122,6 +132,11 @@ namespace AdopteUneDev.WADAL
 
              return categName;
          
+         }
+
+         private List<Review> ChargerReviews()
+         {
+             return Review.getReviewsFromDev(this.IdDev);
          }
              #region Static
              /// <summary>
