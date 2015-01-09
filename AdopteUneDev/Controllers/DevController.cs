@@ -25,5 +25,12 @@ namespace AdopteUneDev.Controllers
 
             return View(Current);
         }
+
+        [HttpPost]
+        public ActionResult postReview(int id,string txtName, string txtMail, string txtText)
+        {
+            Review.AddReview(id, txtName, txtMail, txtText);
+            return new RedirectResult("/Dev/Details/" + id);
+        }
 	}
 }
