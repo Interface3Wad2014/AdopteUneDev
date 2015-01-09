@@ -150,7 +150,7 @@ namespace AdopteUneDev.WADAL
                  List<Dictionary<string, object>> UnDev =
                  GestionConnexion.Instance.getData("select * from Developer where idDev=" + idD);
                  Developer dev = Associe(UnDev[0]);
-                 return dev;
+                 return dev; 
              }
              /// <summary>
              /// Permet d'associer les champs du dictionnaire aux propriétés correspondantes
