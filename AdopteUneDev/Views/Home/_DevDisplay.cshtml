@@ -6,21 +6,21 @@
                 <img src="~/Content/photo/@Model.DevPicture" height="200" alt="@Model.DevPicture" />
                 <h2>€@Model.DevHourCost/Hours</h2>
                 <p>@Model.DevFirstName @Model.DevName - @Model.NomCategPrincipale</p>
-                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                <a href="/Dev/Details/@Model.IdDev" class="btn btn-default add-to-cart"><i class="fa fa-details-cart"></i>Details</a>
             </div>
             <div class="product-overlay">
                 <div class="overlay-content">
                     <h2>€@Model.DevHourCost/Hours</h2>
                     <p>@Model.DevFirstName @Model.DevName - @Model.NomCategPrincipale</p>
-                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                    <a href="/Dev/Details/@Model.IdDev" class="btn btn-default add-to-cart"><i class="fa fa-details-cart"></i>Details</a>
                 </div>
             </div>
         </div>
-        <div class="choose">
+        @*<div class="choose">
             <ul class="nav nav-pills nav-justified">
                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
                 <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
             </ul>
-        </div>
+        </div>*@
     </div>
 </div>

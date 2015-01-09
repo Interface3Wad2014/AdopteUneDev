@@ -1,5 +1,4 @@
-﻿
-using AdopteUneDev.Models;
+﻿using AdopteUneDev.Models;
 using AdopteUneDev.WADAL;
 using System;
 using System.Collections.Generic;
@@ -9,22 +8,22 @@ using System.Web.Mvc;
 
 namespace AdopteUneDev.Controllers
 {
-    public class HomeController : Controller
+    public class DevController : Controller
     {
         //
-        // GET: /Home/
-        public ActionResult Index()
+        // GET: /Dev/
+        public ActionResult Details(int id)
         {
-
             Session["CurrentController"] = this;
-            HomeModel HM = new HomeModel()
+            DetailsModel Current = new DetailsModel()
             {
                 lstCateg = Categories.ChargerToutesLesCategories(),
                 lstLangs = ITLang.ChargerToutesLesITLang(),
-                lstDev = Developer.ChargerTousLesDev()
+                lstDev = Developer.ChargerTousLesDev(),
+                CurrentDev= Developer.ChargerUnDev(id)
             };
 
-            return View(HM);
+            return View(Current);
         }
 	}
 }
