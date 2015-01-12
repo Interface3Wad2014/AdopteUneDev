@@ -185,6 +185,9 @@
     <Content Include="Scripts\contact.js" />
     <Content Include="Scripts\gmaps.js" />
     <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Areas\Boutique\Views\web.config" />
+    <Content Include="Areas\Boutique\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Boutique\Views\Shared\_Layout.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -211,6 +214,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Boutique\BoutiqueAreaRegistration.cs" />
+    <Compile Include="Areas\Boutique\Controllers\PanierController.cs" />
+    <Compile Include="Areas\Boutique\Models\Ligne.cs" />
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,6 +225,7 @@
     <Compile Include="Helper\CustHelper.cs" />
     <Compile Include="Models\DetailsModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\SessionTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -244,6 +251,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Boutique\Views\Panier\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdopteUneDev.WADAL\AdopteUneDev.WADAL.csproj">
