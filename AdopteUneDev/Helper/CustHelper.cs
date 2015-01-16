@@ -177,16 +177,34 @@ namespace AdopteUneDev.Helper
             }
 
             //TODO: Add css and struct to create Tag cloud
-            TagBuilder ta = new TagBuilder("p");
-            
+            TagBuilder ta = new TagBuilder("div");
+            ta.AddCssClass("Cloud");
+            TagBuilder tul = new TagBuilder("ul");
+            tul.AddCssClass("tags");
+            pos = new List<int>();
             foreach (string item in nuage)
             {
-                TagBuilder tli = new TagBuilder("p");
+                TagBuilder tli = new TagBuilder("li");
+                tli.AddCssClass("tag" + randomstyle());
                 tli.InnerHtml = item;
-                ta.InnerHtml += tli.ToString();
+                tul.InnerHtml += tli.ToString();
             }
+            ta.InnerHtml = tul.ToString();
             return new MvcHtmlString(ta.ToString());
 	        
+        }
+        static List<int> pos;
+        static Random random = new Random(); 
+        private static int randomstyle()
+        {
+            int info = random.Next(1, 10)*10; 
+            while(pos.Contains(info))
+            {
+                info = random.Next(1, 10) * 10;
+            }
+            pos.Add(info);
+            return info;
+
         }
 
         #region NOT READ

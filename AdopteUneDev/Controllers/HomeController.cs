@@ -24,7 +24,7 @@ namespace AdopteUneDev.Controllers
                 lstDev = Developer.ChargerTousLesDev()
             };
 
-            return View("Home",HM);
+            return View("Index",HM);
         }
 	}
 }

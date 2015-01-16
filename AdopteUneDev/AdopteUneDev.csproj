@@ -98,6 +98,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Boutique\Views\Panier\Panier.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\Boutique\Views\web.config" />
+    <Content Include="Areas\Boutique\Views\_ViewStart.cshtml" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\Custom.css" />
@@ -106,6 +111,7 @@
     <Content Include="Content\css\prettyPhoto.css" />
     <Content Include="Content\css\price-range.css" />
     <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\TagStyle.css" />
     <Content Include="Content\images\404\404.png" />
     <Content Include="Content\images\blog\blog-one.jpg" />
     <Content Include="Content\images\blog\blog-three.jpg" />
@@ -185,9 +191,7 @@
     <Content Include="Scripts\contact.js" />
     <Content Include="Scripts\gmaps.js" />
     <Content Include="Scripts\html5shiv.js" />
-    <Content Include="Areas\Boutique\Views\web.config" />
-    <Content Include="Areas\Boutique\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Boutique\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Boutique\Views\Shared\_listeLigne.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -214,9 +218,16 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Boutique\BoutiqueAreaRegistration.cs" />
-    <Compile Include="Areas\Boutique\Controllers\PanierController.cs" />
-    <Compile Include="Areas\Boutique\Models\Ligne.cs" />
+    <Compile Include="Areas\Boutique\BoutiqueAreaRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Boutique\Controllers\PanierController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Boutique\Models\Ligne.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\Boutique\Models\Panier.cs" />
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -251,7 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Boutique\Views\Panier\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdopteUneDev.WADAL\AdopteUneDev.WADAL.csproj">

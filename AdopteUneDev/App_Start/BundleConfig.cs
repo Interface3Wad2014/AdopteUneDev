@@ -26,7 +26,8 @@ namespace AdopteUneDev.App_Start
                 "~/Content/css/price-range.css",
                 "~/Content/css/animate.css",
                 "~/Content/css/main.css",
-                "~/Content/css/responsive.css")               
+                "~/Content/css/responsive.css",
+                "~/Content/css/TagStyle.css")               
                 );
 
             bundles.Add(new StyleBundle("~/bundles/Custom").Include("~/Content/css/Custom.css"));

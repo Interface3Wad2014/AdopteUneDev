@@ -8,21 +8,21 @@ namespace AdopteUneDev.Models
 {
     public static class SessionTools
     {
-        public static List<Ligne> Panier
+        public static Panier Panier
         {
-            get 
+            get
             {
                 if (HttpContext.
                     Current.Session["Panier"] == null)
                 {
                     HttpContext.
-                        Current.Session["Panier"] = new List<Ligne>();
+                        Current.Session["Panier"] = new Panier();
                 }
 
-                return (List<Ligne>)HttpContext.
+                return (Panier)HttpContext.
                     Current.Session["Panier"];
             }
-            set 
+            set
             {
                 HttpContext.
                     Current.Session["Panier"] = value;

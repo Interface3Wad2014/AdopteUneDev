@@ -1,0 +1,34 @@
+﻿@model AdopteUneDev.Areas.Boutique.Models.Ligne
+<tr>
+    <td class="cart_product">
+        <a href=""><img src="@Url.Content("~/Content/photo/" + Model.ZeDave.DevPicture)" alt=""></a>
+    </td>
+    <td class="cart_description">
+        <h4><a href="">@Model.ZeDave.DevName @Model.ZeDave.DevFirstName</a></h4>
+        <p>Web ID: @Model.ZeDave.IdDev</p>
+    </td>
+    <td class="cart_price">
+        <p>&euro; @Model.ZeDave.DevHourCost</p>
+    </td>
+    <td class="cart_quantity">
+        <div class="cart_quantity_button">
+            @Html.ActionLink("+", "AddToBasket", "Panier", new { area = "Boutique", id = @Model.ZeDave.IdDev, qte = 1, op = true }, null)
+            <input class="cart_quantity_input" type="text" name="quantity" value="@Model.Qte" autocomplete="off" size="2">
+            @Html.ActionLink("-", "AddToBasket", "Panier", new { area = "Boutique", id = @Model.ZeDave.IdDev, qte = 1, op = false }, null)
+        </div>
+    </td>
+    <td class="cart_total">
+        <p class="cart_total_price">
+            @{
+                int price = Model.Qte * (int)Model.ZeDave.DevHourCost;
+           
+        }
+
+        @price &euro;
+    </p>
+</td>
+<td class="cart_delete">
+    COMING SOON
+</td>
+</tr>
+

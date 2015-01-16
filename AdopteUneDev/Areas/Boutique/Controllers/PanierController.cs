@@ -11,13 +11,40 @@ namespace AdopteUneDev.Areas.Boutique.Controllers
 {
     public class PanierController : Controller
     {
-       [HttpPost]
-        public ActionResult AddToBasket(Developer dev, int qte)
+        [HttpGet]
+        public ActionResult AddToBasket(int id,int qte,bool op)
         {
-            Ligne l = new Ligne() { ZeDave = dev, Qte = qte };
-            SessionTools.Panier.Add(l);
+            if (SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).Count() > 0)
+            {
+                if (op)
+                {
+                    SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault().Qte += qte;
+                }
+                else
+                {
+                    SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault().Qte -= qte;
+                }
 
-            return View();
+                if (SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault().Qte < 1) SessionTools.Panier.Lignes.Remove(SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault());
+            }
+            return View("Panier", SessionTools.Panier);
+        }
+
+       [HttpPost]
+        public ActionResult AddToBasket(int qte, int id)
+        {
+            Developer dev = Developer.ChargerUnDev(id);
+
+            if (SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).Count() > 0)
+           {
+               SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault().Qte += qte;  
+           }
+           else{
+            Ligne l = new Ligne() { ZeDave = Developer.ChargerUnDev(id), Qte = qte };
+            SessionTools.Panier.Lignes.Add(l);
+           }
+
+            return View("Panier", SessionTools.Panier);
         }
 	}
 }
