@@ -98,9 +98,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Boutique\Views\Panier\Panier.cshtml">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="Areas\Boutique\Views\web.config" />
     <Content Include="Areas\Boutique\Views\_ViewStart.cshtml" />
     <Content Include="Content\css\animate.css" />
@@ -192,6 +189,8 @@
     <Content Include="Scripts\gmaps.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Areas\Boutique\Views\Shared\_listeLigne.cshtml" />
+    <Content Include="Areas\Boutique\Views\Panier\Panier.cshtml" />
+    <Content Include="Areas\Member\Views\web.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -228,6 +227,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Areas\Boutique\Models\Panier.cs" />
+    <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -262,6 +262,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Member\Controllers\" />
+    <Folder Include="Areas\Member\Models\" />
+    <Folder Include="Areas\Member\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdopteUneDev.WADAL\AdopteUneDev.WADAL.csproj">

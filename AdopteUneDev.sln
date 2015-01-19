@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdopteUneDev.DAL", "AdopteU
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdopteUneDev.WADAL", "AdopteUneDev.WADAL\AdopteUneDev.WADAL.csproj", "{8BA167FF-A944-460B-9892-3A264679F096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdopteUneDev.Tests", "AdopteUneDev.Tests\AdopteUneDev.Tests.csproj", "{569BCA28-A6DD-414C-B769-5C05B0147E2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8BA167FF-A944-460B-9892-3A264679F096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BA167FF-A944-460B-9892-3A264679F096}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BA167FF-A944-460B-9892-3A264679F096}.Release|Any CPU.Build.0 = Release|Any CPU
+		{569BCA28-A6DD-414C-B769-5C05B0147E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{569BCA28-A6DD-414C-B769-5C05B0147E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{569BCA28-A6DD-414C-B769-5C05B0147E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{569BCA28-A6DD-414C-B769-5C05B0147E2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

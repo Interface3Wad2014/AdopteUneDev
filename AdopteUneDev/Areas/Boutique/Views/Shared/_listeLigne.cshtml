@@ -1,34 +1,30 @@
 ﻿@model AdopteUneDev.Areas.Boutique.Models.Ligne
 <tr>
     <td class="cart_product">
-        <a href=""><img src="@Url.Content("~/Content/photo/" + Model.ZeDave.DevPicture)" alt=""></a>
+        <a href=""><img src="@Url.Content("~/Content/photo/" + Model.ZeDave.DevPicture)" width="100" alt=""></a>
     </td>
     <td class="cart_description">
         <h4><a href="">@Model.ZeDave.DevName @Model.ZeDave.DevFirstName</a></h4>
         <p>Web ID: @Model.ZeDave.IdDev</p>
     </td>
     <td class="cart_price">
-        <p>&euro; @Model.ZeDave.DevHourCost</p>
+        <p>&euro; @Model.Tarif</p>
     </td>
     <td class="cart_quantity">
         <div class="cart_quantity_button">
             @Html.ActionLink("+", "AddToBasket", "Panier", new { area = "Boutique", id = @Model.ZeDave.IdDev, qte = 1, op = true }, null)
             <input class="cart_quantity_input" type="text" name="quantity" value="@Model.Qte" autocomplete="off" size="2">
             @Html.ActionLink("-", "AddToBasket", "Panier", new { area = "Boutique", id = @Model.ZeDave.IdDev, qte = 1, op = false }, null)
+            <br />
         </div>
     </td>
     <td class="cart_total">
         <p class="cart_total_price">
-            @{
-                int price = Model.Qte * (int)Model.ZeDave.DevHourCost;
-           
-        }
-
-        @price &euro;
+            @Model.Cout &euro;
     </p>
 </td>
 <td class="cart_delete">
-    COMING SOON
+    <a class="cart_quantity_delete" href="~/Boutique/Panier/DelToBasket/@Model.ZeDave.IdDev"><i class="fa fa-times"></i></a>
 </td>
 </tr>
 

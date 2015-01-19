@@ -22,7 +22,7 @@ namespace AdopteUneDev.Areas.Boutique.Models
 
        private Double FnTotal()
        {
-           return Lignes.Sum(e => e.ZeDave.DevHourCost * e.Qte );
+           return Lignes.Sum(e => e.Cout );
        }
     }
 }

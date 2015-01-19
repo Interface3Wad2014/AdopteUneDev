@@ -10,6 +10,7 @@ namespace AdopteUneDev.Areas.Boutique.Models
     {
         private Developer _zeDave;
         private int _qte;
+        private int _tarif;
 
         public int Qte
         {
@@ -17,11 +18,29 @@ namespace AdopteUneDev.Areas.Boutique.Models
             set { _qte = value; }
         }
 
+        public float Cout
+        {
+            get { return FnCout(); }
+        }
+
+       
+
+        public int Tarif
+        {
+            get { return _tarif; }
+            set { _tarif = value; }
+        }
+
 
         public Developer ZeDave
         {
             get { return _zeDave; }
             set { _zeDave = value; }
+        }
+
+        private float FnCout()
+        {
+            return Tarif * Qte;
         }
 
     }

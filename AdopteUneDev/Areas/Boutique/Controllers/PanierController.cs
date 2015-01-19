@@ -28,10 +28,10 @@ namespace AdopteUneDev.Areas.Boutique.Controllers
                 if (SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault().Qte < 1) SessionTools.Panier.Lignes.Remove(SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault());
             }
             return View("Panier", SessionTools.Panier);
-        }
+        }      
 
        [HttpPost]
-        public ActionResult AddToBasket(int qte, int id)
+        public ActionResult AddToBasket(int qte, int id, int tarif)
         {
             Developer dev = Developer.ChargerUnDev(id);
 
@@ -40,11 +40,17 @@ namespace AdopteUneDev.Areas.Boutique.Controllers
                SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault().Qte += qte;  
            }
            else{
-            Ligne l = new Ligne() { ZeDave = Developer.ChargerUnDev(id), Qte = qte };
+            Ligne l = new Ligne() { ZeDave = Developer.ChargerUnDev(id), Qte = qte , Tarif=tarif};
             SessionTools.Panier.Lignes.Add(l);
            }
 
             return View("Panier", SessionTools.Panier);
         }
+
+        public ActionResult DelToBasket(int id)
+       {
+           SessionTools.Panier.Lignes.Remove(SessionTools.Panier.Lignes.Where(li => li.ZeDave.IdDev == id).FirstOrDefault());
+           return View("Panier", SessionTools.Panier);
+       }
 	}
 }

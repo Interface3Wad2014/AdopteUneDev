@@ -81,7 +81,12 @@
                                 <img src="../../Content/images/product-details/rating.png" alt="" />
                                 <span>
                                     <form method="post" action="../../Boutique/Panier/AddToBasket">
-                                        <span>&euro; @Model.CurrentDev.DevHourCost/Hours</span>
+                                        <select name="tarif">
+                                            <option value="@Model.CurrentDev.DevHourCost">@Model.CurrentDev.DevHourCost &euro;/Hours</option>
+                                            <option value="@Model.CurrentDev.DevDayCost">@Model.CurrentDev.DevDayCost &euro;/Day</option>
+                                            <option value="@Model.CurrentDev.DevMonthCost">@Model.CurrentDev.DevMonthCost &euro;/Month</option>                                         
+                                        </select>
+                                        @*<span>&euro; @Model.CurrentDev.DevHourCost/Hours</span>*@
                                         <label>Quantity:</label>
                                         <input type="text" name="qte" value="3" />
                                         <button type="submit" class="btn btn-fefault cart">
