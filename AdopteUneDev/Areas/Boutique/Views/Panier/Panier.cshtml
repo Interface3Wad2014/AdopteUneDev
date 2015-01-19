@@ -1,0 +1,51 @@
+﻿@model AdopteUneDev.Areas.Boutique.Models.Panier
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image"></td>
+                        <td class="description"></td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Lignes)
+                    {
+                        Html.RenderPartial("_listeLigne", item);
+                    }
+                    <tr class="cart_menu">
+                        <td class="image"></td>
+                        <td class="description"></td>
+                        <td class="price">Total HTVA</td>
+                        <td class="quantity">Total TVA(21%)</td>
+                        <td class="total">Total TVAC</td>
+                        <td></td>
+                    </tr>
+                    <tr class="cart_menu">
+                        <td class="image"></td>
+                        <td class="description"></td>
+                        <td class="price">@Model.Total  &euro;</td>
+                        <td class="quantity">
+                            @{double tva = Model.Total * 0.21; double ttc = Model.Total + tva; }
+                        @tva &euro;
+                    </td>
+                    <td class="total">@ttc &euro;</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</section> <!--/#cart_items-->
