@@ -11,6 +11,11 @@ namespace AdopteUneDev.Areas.Boutique.Controllers
 {
     public class PanierController : Controller
     {
+        public ActionResult Index()
+        {
+            return View("Panier", SessionTools.Panier);
+        }
+
         [HttpGet]
         public ActionResult AddToBasket(int id,int qte,bool op)
         {

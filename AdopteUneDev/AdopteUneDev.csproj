@@ -155,6 +155,7 @@
     <Content Include="Content\images\home\searchicon.png" />
     <Content Include="Content\images\home\shipping.jpg" />
     <Content Include="Content\images\logoAdopte.png" />
+    <Content Include="Content\images\PayPal-logo.png" />
     <Content Include="Content\images\product-details\1.jpg" />
     <Content Include="Content\images\product-details\new.jpg" />
     <Content Include="Content\images\product-details\rating.png" />
@@ -169,6 +170,7 @@
     <Content Include="Content\images\shop\product7.jpg" />
     <Content Include="Content\images\shop\product8.jpg" />
     <Content Include="Content\images\shop\product9.jpg" />
+    <Content Include="Content\images\waiting.gif" />
     <Content Include="Content\photo\avatar.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -191,6 +193,12 @@
     <Content Include="Areas\Boutique\Views\Shared\_listeLigne.cshtml" />
     <Content Include="Areas\Boutique\Views\Panier\Panier.cshtml" />
     <Content Include="Areas\Member\Views\web.config" />
+    <Content Include="Areas\Member\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Member\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Payement\Views\web.config" />
+    <Content Include="Areas\Payement\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Payement\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Payement\Views\Paypal\ValidateCommand.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -227,13 +235,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Areas\Boutique\Models\Panier.cs" />
+    <Compile Include="Areas\Member\Controllers\LoginController.cs" />
     <Compile Include="Areas\Member\MemberAreaRegistration.cs" />
+    <Compile Include="Areas\Payement\Controllers\PaypalController.cs" />
+    <Compile Include="Areas\Payement\Models\PayPalModel.cs" />
+    <Compile Include="Areas\Payement\PayementAreaRegistration.cs" />
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CustHelper.cs" />
+    <Compile Include="Helper\Tools.cs" />
     <Compile Include="Models\DetailsModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\SessionTools.cs" />
@@ -262,7 +275,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Member\Controllers\" />
     <Folder Include="Areas\Member\Models\" />
     <Folder Include="Areas\Member\Views\Shared\" />
   </ItemGroup>

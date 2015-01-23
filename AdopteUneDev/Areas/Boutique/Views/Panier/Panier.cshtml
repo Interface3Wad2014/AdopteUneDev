@@ -48,9 +48,13 @@
         </table>
             @if(Model.Total>0)
             { 
-            <span style="float:right">
-                <button onclick="alert('COMING SOON');" type="button" class="btn btn-primary cart">Payer</button>
-            </span>
+          
+                <form method="post" action="~/Payement/Paypal/ValidateCommand" style="float:right">
+                    <input type="hidden" name="totalPrice" value="@ttc" />
+                    <input type="hidden" name="product" value="Order_@DateTime.Now.ToShortDateString().Replace("/","")">
+                    <button type="submit" class="btn btn-primary cart">Payer</button>
+                </form>
+
             }
     </div>
 </div>

@@ -53,7 +53,9 @@ namespace AdopteUneDev.WADAL
          /// Nom de la catégorie principale de notre developpeur
          /// </summary>
         private string _NomCategPrincipale;
-
+         /// <summary>
+         /// Liste des reviews du dev
+         /// </summary>
         private List<Review> _Lstreview = null;
 
         
@@ -110,7 +112,9 @@ namespace AdopteUneDev.WADAL
          {
              get { return _NomCategPrincipale = _NomCategPrincipale?? chargerNomCateg(); }
          }
-
+         /// <summary>
+         /// Propriété permettant de récupérer les revies de notre dev
+         /// </summary>
          public List<Review> Lstreview
          {
              get { return _Lstreview=_Lstreview?? ChargerReviews(); }
@@ -133,7 +137,10 @@ namespace AdopteUneDev.WADAL
              return categName;
          
          }
-
+         /// <summary>
+         /// Permet de charger les review du dev
+         /// </summary>
+         /// <returns>La liste des reviews du developer</returns>
          private List<Review> ChargerReviews()
          {
              return Review.getReviewsFromDev(this.IdDev);
