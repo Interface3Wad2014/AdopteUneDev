@@ -16,6 +16,7 @@ namespace AdopteUneDev.Areas.Boutique.Controllers
             return View("Panier", SessionTools.Panier);
         }
 
+
         [HttpGet]
         public ActionResult AddToBasket(int id,int qte,bool op)
         {
